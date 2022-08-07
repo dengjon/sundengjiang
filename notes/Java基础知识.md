@@ -171,7 +171,55 @@ byte b1 = (byte)2000; // 数据溢出
    int b = 3>>>3; //算数右移
    ```
 
+# 控制结构
 
+1. if-else 分支控制：基本语法：
+
+   ```java
+   if (expression1) {
+       do;
+   } else if (expression2) {
+       do;
+   } else {
+       do;
+   }
+   ```
+
+2. switch 分支控制：基本语法：
+
+   ```java
+   switch (expression) {
+       case constant1:
+           do;
+           break;
+       case constant2:
+           do;
+           break;
+       default:
+           do default;
+           break;
+   }
+   ```
+
+   **switch or if ?** -- 如果判断的具体数值不多，并且符合byte, short, int, char, enum, String这六种类型，建议使用`switch`，其他情况一般都使用`if`
+
+3. for 循环控制：
+
+   ```java
+   for (i=0; i<10; i++) {
+       do;
+   }
+   ```
+
+4. while 循环控制：
+
+   ```java
+   while (expression) {
+       do;
+   }
+   ```
+
+   
 
 
 
