@@ -215,7 +215,7 @@ byte b1 = (byte)2000; // 数据溢出
 3. for 循环控制：
 
    ```java
-   for (i=0; i<10; i++) {
+   for (int i=0; i<10; i++) {
        do;
    }
    ```
@@ -228,7 +228,109 @@ byte b1 = (byte)2000; // 数据溢出
    }
    ```
 
-   
+# 数组、排序和查找
+
+## 数组的使用
+
+1. 动态初始化
+
+   数据类型[] 数组名 （或者 数据类型 数组名[]）= new 数据类型[大小]
+
+   ```java
+   int a[] = new int[5]; // 创建一个长度为5的整数型数组
+   ```
+
+2. 动态初始化
+
+   先声明数组： `int a[];`，然后创建数组：`a = new int[10];`
+
+3. 静态初始化
+
+   语法：数据类型 数组名[] = {元素值1, 元素值2, ...}，用于预先知道元素值的情况，例如：
+
+   ```java
+   double hens[] = {3, 5, 2, 6.6, 9, 10}; // double[] 表示double类型的数组
+   System.out.println(hens.length) // 输出数组的长度，6
+   for (int i=0; i<hen.length; i++) {
+       System.out.println(hen[i]);
+   }
+   ```
+
+**使用注意事项**
+
+1. 数组中的元素可以是任意数据类型，包括基本类型和引用类型，但是不可以混用
+2. 数组创建后，如果没有赋值，数值类型默认值为0，char: \u0000, boolean: false, String: null
+3. 数组属于引用类型，数组型数据是对象（object）
+4. 数组`println`输出的结果是数组的地址
+
+## 数组赋值机制
+
+基本数据类型的赋值，赋值方式是值拷贝，赋值后的变量是独立存在，不会相互影响，例如：
+
+```java
+int n1 = 10;
+int n2 = n1;
+n2 = 80; // 这时n2=80, n1=10
+```
+
+数组在默认情况下是**引用传递**，赋的值是地址，例如：
+
+```java
+int arr1[] = {1, 2, 3};
+int arr2[] = arr1; // arr2的变化会影响arr1
+```
+
+### 数组值拷贝
+
+开辟新的数据空间，只传递数组的值而非地址：
+
+```java
+int arr1[] = {1, 2, 3};
+int arr2[] = new int[arr1.length]; //开辟一块新的数据空间
+arr2 = arr1;
+```
+
+### 数组翻转
+
+1. 创建一个中间变量，用于保存提取出来的元素，将数组头尾元素依次交换，例如：
+
+   ```java
+   int temp = 0;
+   int len = arr.length;
+   for (int i = 0; i < len / 2; i++) {
+       temp = arr[len-1-i];
+       arr[len-1-i] = arr[i];
+       arr[i] = temp;
+   }
+   ```
+
+2. 创建一个新的数组，将元素依次取出并赋值给新的数组，最后<u>释放原来的数据空间</u>，例如：
+
+   ```java
+   int arr1[] = {1, 2, 3, 4, 5, 6};
+   int arr2[] = new int[arr1.length];
+   for (int i=arr1.length-1, j=0; i>=0; i--, j++) {
+       arr2[j] = arr1[i];
+   }
+   arr1 = arr2; // 让arr1指向arr2的数据空间，原来的空间就**被释放了**
+   ```
+
+   因为原来的数据空间没有被变量引用，就会被当作垃圾销毁
+
+### 数组扩容
+
+要想向一个已经确定的数组`arr`中增加额外的元素，需要遵从以下的步骤：
+
+1. 定义一个新的数据`int arrNew[] = new int[arr.length+1];`
+2. 遍历原数组`arr`，依次将元素拷贝到`arrNew`数组
+3. 将新的元素赋值给新的数组`arrNew[arrNew.length-1] = 4;`
+4. 让`arr`指向`arrNew`：`arr = arrNew;`
+
+**灵活输入扩容**：使用`Scanner`读取用户的输入，由用户决定是否停止扩容，<a href="../code/Arrayadd.java">参考代码 ArrayAdd.java</a>。
+
+
+
+
 
 
 
