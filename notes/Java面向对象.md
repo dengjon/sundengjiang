@@ -157,3 +157,45 @@ public int sum(int... nums) { //这里的 int... 是固定用法，表示接收�
 5. 如果没有定义构造器，系统则会自动生成一个自动无参构造器，例如`Person(){}`
 6. 一旦定义了自己的构造器，默认的构造器就被覆盖了
 
+# this关键字
+
+问题情景：
+
+```java
+class Dog {
+    String name;
+    int age;
+    public Dog(String name, int age) {
+        name = name;
+        age = age;
+    }
+}// name=null; age=0;
+```
+
+> 希望构造器的变量名能使用属性名，并且还想给属性赋值
+
+解决方式：非常类似Python中的`self`
+
+```java
+public Dog(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+```
+
+**注意事项和细节**
+
+1. this的本质是一个指向自己地址的指针，因此使用`this`就可以直接调用对象本身的属性
+2. this可以访问构造器语法： this(参数列表) ；这种用法只能在构造器中使用，也就是只能在构造器中访问另外一个构造器
+
+练习题：
+
+```java
+import java.util.Random;
+...;
+Random r = new Random();
+comGuessNum = r.nextInt(3); //返回0-2的随机数
+```
+
+
+
