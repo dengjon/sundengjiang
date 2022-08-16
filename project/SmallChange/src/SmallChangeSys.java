@@ -38,6 +38,10 @@ public class SmallChangeSys {
                 case "2" -> {
                     System.out.println("收益入账金额：");
                     money = scanner.nextDouble();
+                    if (money <= 0) {
+                        System.out.println("收益入账金额需要大于0！");
+                        break;
+                    }
                     balance += money;
                     date = new Date();
                     details += "\n收益入账\t+" + money + "\t" + sdf.format(date) + '\t' + balance;
@@ -46,6 +50,10 @@ public class SmallChangeSys {
                 case "3" -> {
                     System.out.println("消费金额：");
                     money = scanner.nextDouble();
+                    if (money <= 0 || money > balance) {
+                        System.out.println("消费金额应该在0-" + balance + "之间");
+                        break;
+                    }
                     balance -= money;
                     System.out.println("消费说明：");
                     note = scanner.next();
@@ -54,8 +62,18 @@ public class SmallChangeSys {
 
                 }
                 case "4" -> {
-                    System.out.println("===========退出了零钱通===========");
-                    loop = false;
+                    System.out.println("你确定要退出吗？y/n");
+                    String choice = scanner.next();
+                    // 限定必须接收到"y"和"n"
+                    while (!"y".equals(choice) && !"n".equals(choice)) {
+                        System.out.println("你确定要退出吗？y/n");
+                        choice = scanner.next();
+                    }
+                    // 根据输入判断是否退出
+                    if ("y".equals(choice)) {
+                        System.out.println("===========退出了零钱通===========");
+                        loop = false;
+                    }
                 }
                 default -> System.out.println("选择有误，请重新选择");
             }
