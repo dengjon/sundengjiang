@@ -1,5 +1,7 @@
 package view;
 
+import model.House;
+import service.HouseService;
 import utils.Utility;
 
 /**
@@ -10,6 +12,7 @@ import utils.Utility;
 public class HouseView {
 
     private boolean loop = true; // 控制显示主菜单
+    private final HouseService houseService = new HouseService(10); //设置数组大小为10
 
     public void mainMenu() {
         do {
@@ -25,16 +28,51 @@ public class HouseView {
             // 接受用户的选择
             char key = Utility.readChar();
             switch (key) {
-                case '1' -> System.out.println("新增");
+                case '1' -> addHouse();
                 case '2' -> System.out.println("查找");
                 case '3' -> System.out.println("删除");
                 case '4' -> System.out.println("修改");
-                case '5' -> System.out.println("房屋列表");
+                case '5' -> listHouses();
                 case '6' -> {
                     System.out.println("退出");
                     loop = false;
                 }
             }
         } while (loop);
+    }
+
+    public void listHouses() {
+        System.out.println("=============房屋列表===============");
+        System.out.println("编号\t\t房主\t\t电话\t\t地址\t\t\t月租\t\t状态（未出租/已出租）");
+        House[] houses = houseService.list();
+        for (House house : houses) {
+            if (house == null) {
+                break;
+            }
+            System.out.println(house);
+        }
+        System.out.println("============房屋列表完毕============");
+    }
+
+    public void addHouse() {
+        // 接收用户的输入，把新的house对象加入到houses数组中
+        System.out.println("===========添加房屋===========");
+        System.out.println("姓名：");
+        String name = Utility.readString(8);
+        System.out.println("电话：");
+        String phone = Utility.readString(12);
+        System.out.println("地址：");
+        String address = Utility.readString(16);
+        System.out.println("月租：");
+        int rent = Utility.readInt();
+        System.out.println("状态：");
+        String state = Utility.readString(3);
+        // 创建一个新的House对象，id由系统分配
+        House house = new House(0, name, phone, address, rent, state);
+        if (houseService.add(house)) {
+            System.out.println("===========添加房屋成功============");
+        } else {
+            System.out.println("===========添加房屋失败============");
+        }
     }
 }
