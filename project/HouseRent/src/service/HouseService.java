@@ -3,35 +3,63 @@ package service;
 import model.House;
 
 /**
- * ¶¨ÒåHouse[]£¬±£´æHouse¶ÔÏó
- * 1. ÏàÓ¦HouseViewµÄµ÷ÓÃ
- * 2. Íê³É¶Ô·¿ÎİĞÅÏ¢µÄ¸÷ÖÖ²Ù×÷£¨ÔöÉ¾¸Ä²é£©
+ * å®šä¹‰House[]ï¼Œä¿å­˜Houseå¯¹è±¡
+ * 1. ç›¸åº”HouseViewçš„è°ƒç”¨
+ * 2. å®Œæˆå¯¹æˆ¿å±‹ä¿¡æ¯çš„å„ç§æ“ä½œï¼ˆå¢åˆ æ”¹æŸ¥ï¼‰
  */
 public class HouseService {
 
-    private final House[] houses; // ±£´æHouse¶ÔÏó
-    private int houseNum = 1; // ¼ÇÂ¼µ±Ç°·¿ÎİÊıÁ¿
-    private int idCounter = 1; // ¼ÇÂ¼µ±Ç°µÄidÔö³¤
+    private final House[] houses; // ä¿å­˜Houseå¯¹è±¡
+    private int houseNum = 1; // è®°å½•å½“å‰æˆ¿å±‹æ•°é‡
+    private int idCounter = 1; // è®°å½•å½“å‰çš„idå¢é•¿
 
     public HouseService(int size) {
-        houses = new House[size]; //µ±´´½¨Ò»¸öHouseService¶ÔÏóÊ±£¬Ö¸¶¨Êı×é´óĞ¡
+        houses = new House[size]; //å½“åˆ›å»ºä¸€ä¸ªHouseServiceå¯¹è±¡æ—¶ï¼ŒæŒ‡å®šæ•°ç»„å¤§å°
         houses[0] = new House(1, "jack", "112",
-                "º£µíÇø±±½»", 2000, "Î´³ö×â"); // ³õÊ¼»¯Êı×é£¬ÓÃÓÚ²âÊÔ
+                "æµ·æ·€åŒºåŒ—äº¤", 2000, "æœªå‡ºç§Ÿ"); // åˆå§‹åŒ–æ•°ç»„ï¼Œç”¨äºæµ‹è¯•
     }
 
     public House[] list() {
-        return houses; // ·µ»ØHouseÊı×é
+        return houses; // è¿”å›Houseæ•°ç»„
     }
 
     public boolean add(House newHouse) {
-        // ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ¼ÌĞøÌí¼Ó
+        // åˆ¤æ–­æ˜¯å¦å¯ä»¥ç»§ç»­æ·»åŠ 
         if (houseNum == houses.length) {
-            System.out.println("Êı×éÒÑÂú£¬²»ÄÜÔÙÌí¼Ó");
+            System.out.println("æ•°ç»„å·²æ»¡ï¼Œä¸èƒ½å†æ·»åŠ ");
             return false;
         }
-        houses[houseNum++] = newHouse; // Ïòhouse[]Êı×éÖĞ¼ÓÈëÒ»¸öhouse¶ÔÏó
-        newHouse.setId(++idCounter); // idCounter×ÔÔöÖ®ºóÊ¹ÓÃsetter·½·¨¸üĞÂid
+        houses[houseNum++] = newHouse; // å‘house[]æ•°ç»„ä¸­åŠ å…¥ä¸€ä¸ªhouseå¯¹è±¡
+        newHouse.setId(++idCounter); // idCounterè‡ªå¢ä¹‹åä½¿ç”¨setteræ–¹æ³•æ›´æ–°id
         return true;
+    }
+
+    public boolean del(int delId) {
+        int index = -1;
+        for (int i = 0; i < houseNum; i++) {
+            if (delId == houses[i].getId()) {
+                index = i;
+            }
+        }
+        if (index == -1) {
+            return false;
+        }
+        if (index < houseNum - 1) {
+            for (int i = index; i < houseNum - 1; i++) {
+                houses[i] = houses[i + 1];
+            }
+        }
+        houses[--houseNum] = null; // æŠŠå½“å‰éç©ºçš„åˆ—è¡¨æœ€åä¸€ä¸ªç½®ç©ºï¼Œå¹¶è‡ªå‡
+        return true;
+    }
+
+    public House findById(int findId) {
+        for (int i = 0; i < houseNum; i++) {
+            if (findId == houses[i].getId()) {
+                return houses[i];
+            }
+        }
+        return null;
     }
 
 }

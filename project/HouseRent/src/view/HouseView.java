@@ -5,45 +5,42 @@ import service.HouseService;
 import utils.Utility;
 
 /**
- * 1. ÏÔÊ¾½çÃæ
- * 2. ½ÓÊÕÓÃ»§µÄÊäÈë
- * 3. µ÷ÓÃHouseServiceÍê³É¶Ô·¿ÎİµÄ¸÷ÖÖ²Ù×÷
+ * 1. æ˜¾ç¤ºç•Œé¢
+ * 2. æ¥æ”¶ç”¨æˆ·çš„è¾“å…¥
+ * 3. è°ƒç”¨HouseServiceå®Œæˆå¯¹æˆ¿å±‹çš„å„ç§æ“ä½œ
  */
 public class HouseView {
 
-    private boolean loop = true; // ¿ØÖÆÏÔÊ¾Ö÷²Ëµ¥
-    private final HouseService houseService = new HouseService(10); //ÉèÖÃÊı×é´óĞ¡Îª10
+    private boolean loop = true; // æ§åˆ¶æ˜¾ç¤ºä¸»èœå•
+    private final HouseService houseService = new HouseService(10); //è®¾ç½®æ•°ç»„å¤§å°ä¸º10
 
     public void mainMenu() {
         do {
-            System.out.println("==================·¿Îİ³ö×â²Ëµ¥================");
-            System.out.println("\t\t\t1 ĞÂ Ôö ·¿ Ô´");
-            System.out.println("\t\t\t2 ²é ÕÒ ·¿ Ô´");
-            System.out.println("\t\t\t3 É¾³ı·¿ÎİĞÅÏ¢");
-            System.out.println("\t\t\t4 ĞŞ¸Ä·¿ÎİĞÅÏ¢");
-            System.out.println("\t\t\t5 ·¿ Îİ ÁĞ ±í");
-            System.out.println("\t\t\t6 ÍË      ³ö");
-            System.out.println("ÇëÊäÈëÄãµÄÑ¡Ôñ£¨1-6£©£º");
+            System.out.println("==================æˆ¿å±‹å‡ºç§Ÿèœå•================");
+            System.out.println("\t\t\t1 æ–° å¢ æˆ¿ æº");
+            System.out.println("\t\t\t2 æŸ¥ æ‰¾ æˆ¿ æº");
+            System.out.println("\t\t\t3 åˆ é™¤æˆ¿å±‹ä¿¡æ¯");
+            System.out.println("\t\t\t4 ä¿®æ”¹æˆ¿å±‹ä¿¡æ¯");
+            System.out.println("\t\t\t5 æˆ¿ å±‹ åˆ— è¡¨");
+            System.out.println("\t\t\t6 é€€      å‡º");
+            System.out.println("è¯·è¾“å…¥ä½ çš„é€‰æ‹©ï¼ˆ1-6ï¼‰ï¼š");
 
-            // ½ÓÊÜÓÃ»§µÄÑ¡Ôñ
+            // æ¥å—ç”¨æˆ·çš„é€‰æ‹©
             char key = Utility.readChar();
             switch (key) {
                 case '1' -> addHouse();
-                case '2' -> System.out.println("²éÕÒ");
-                case '3' -> System.out.println("É¾³ı");
-                case '4' -> System.out.println("ĞŞ¸Ä");
+                case '2' -> findHouse();
+                case '3' -> delHouse();
+                case '4' -> updateHouse();
                 case '5' -> listHouses();
-                case '6' -> {
-                    System.out.println("ÍË³ö");
-                    loop = false;
-                }
+                case '6' -> exit();
             }
         } while (loop);
     }
 
     public void listHouses() {
-        System.out.println("=============·¿ÎİÁĞ±í===============");
-        System.out.println("±àºÅ\t\t·¿Ö÷\t\tµç»°\t\tµØÖ·\t\t\tÔÂ×â\t\t×´Ì¬£¨Î´³ö×â/ÒÑ³ö×â£©");
+        System.out.println("=============æˆ¿å±‹åˆ—è¡¨===============");
+        System.out.println("ç¼–å·\t\tæˆ¿ä¸»\t\tç”µè¯\t\tåœ°å€\t\t\tæœˆç§Ÿ\t\tçŠ¶æ€ï¼ˆæœªå‡ºç§Ÿ/å·²å‡ºç§Ÿï¼‰");
         House[] houses = houseService.list();
         for (House house : houses) {
             if (house == null) {
@@ -51,28 +48,109 @@ public class HouseView {
             }
             System.out.println(house);
         }
-        System.out.println("============·¿ÎİÁĞ±íÍê±Ï============");
+        System.out.println("============æˆ¿å±‹åˆ—è¡¨å®Œæ¯•============");
     }
 
     public void addHouse() {
-        // ½ÓÊÕÓÃ»§µÄÊäÈë£¬°ÑĞÂµÄhouse¶ÔÏó¼ÓÈëµ½housesÊı×éÖĞ
-        System.out.println("===========Ìí¼Ó·¿Îİ===========");
-        System.out.println("ĞÕÃû£º");
+        // æ¥æ”¶ç”¨æˆ·çš„è¾“å…¥ï¼ŒæŠŠæ–°çš„houseå¯¹è±¡åŠ å…¥åˆ°housesæ•°ç»„ä¸­
+        System.out.println("===========æ·»åŠ æˆ¿å±‹===========");
+        System.out.println("å§“åï¼š");
         String name = Utility.readString(8);
-        System.out.println("µç»°£º");
+        System.out.println("ç”µè¯ï¼š");
         String phone = Utility.readString(12);
-        System.out.println("µØÖ·£º");
+        System.out.println("åœ°å€ï¼š");
         String address = Utility.readString(16);
-        System.out.println("ÔÂ×â£º");
+        System.out.println("æœˆç§Ÿï¼š");
         int rent = Utility.readInt();
-        System.out.println("×´Ì¬£º");
+        System.out.println("çŠ¶æ€ï¼š");
         String state = Utility.readString(3);
-        // ´´½¨Ò»¸öĞÂµÄHouse¶ÔÏó£¬idÓÉÏµÍ³·ÖÅä
+        // åˆ›å»ºä¸€ä¸ªæ–°çš„Houseå¯¹è±¡ï¼Œidç”±ç³»ç»Ÿåˆ†é…
         House house = new House(0, name, phone, address, rent, state);
         if (houseService.add(house)) {
-            System.out.println("===========Ìí¼Ó·¿Îİ³É¹¦============");
+            System.out.println("===========æ·»åŠ æˆ¿å±‹æˆåŠŸ============");
         } else {
-            System.out.println("===========Ìí¼Ó·¿ÎİÊ§°Ü============");
+            System.out.println("===========æ·»åŠ æˆ¿å±‹å¤±è´¥============");
+        }
+    }
+
+    public void delHouse() {
+        System.out.println("===========åˆ é™¤æˆ¿å±‹ä¿¡æ¯============");
+        System.out.println("è¯·è¾“å…¥å¾…åˆ é™¤æˆ¿å±‹çš„ç¼–å·ï¼ˆ-1é€€å‡ºï¼‰ï¼š");
+        int delId = Utility.readInt();
+        if (delId == -1) {
+            System.out.println("============æ”¾å¼ƒåˆ é™¤æˆ¿å±‹ä¿¡æ¯============");
+            return;
+        }
+        char choice = Utility.readConfirmSelection();
+        if (choice == 'Y') {
+            if (houseService.del(delId)) {
+                System.out.println("=============åˆ é™¤æˆ¿å±‹ä¿¡æ¯æˆåŠŸ===========");
+            } else {
+                System.out.println("===========åˆ é™¤æˆ¿å±‹ä¿¡æ¯å¤±è´¥ï¼ŒIDä¸å­˜åœ¨=========");
+            }
+        } else {
+            System.out.println("============æ”¾å¼ƒåˆ é™¤æˆ¿å±‹ä¿¡æ¯============");
+        }
+    }
+
+    public void findHouse() {
+        System.out.println("----------æŸ¥æ‰¾æˆ¿å±‹ä¿¡æ¯----------");
+        System.out.println("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„IDï¼š");
+        int findId = Utility.readInt();
+        House house = houseService.findById(findId);
+        if (house != null) {
+            System.out.println(house);
+        } else {
+            System.out.println("----------æŸ¥æ‰¾çš„æˆ¿å±‹IDä¸å­˜åœ¨---------");
+        }
+    }
+
+    public void updateHouse() {
+        System.out.println("----------ä¿®æ”¹æˆ¿å±‹-----------");
+        System.out.println("è¯·è¾“å…¥å¾…ä¿®æ”¹æˆ¿å±‹çš„ç¼–å·(-1é€€å‡º)ï¼š");
+        int updateId = Utility.readInt();
+        // è¿™é‡Œçš„houseæ˜¯ä¸€ä¸ªå¼•ç”¨ç±»å‹ï¼Œè¿”å›çš„ç»“æœæ˜¯åœ°å€ï¼Œå› æ­¤åœ¨è¿™é‡Œä¿®æ”¹ä¼šå¯¹åŸæ¥çš„houseè¿›è¡Œä¿®æ”¹
+        House house = houseService.findById(updateId);
+        if (updateId == -1) {
+            System.out.println("----------æ”¾å¼ƒä¿®æ”¹----------");
+            return;
+        }
+        if (house == null) {
+            System.out.println("---------æŸ¥æ‰¾çš„æˆ¿å±‹IDä¸å­˜åœ¨----------");
+            return;
+        }
+        System.out.println("å§“åï¼ˆ" + house.getName() + "ï¼‰ï¼š");
+        String name = Utility.readString(8, ""); //å¦‚æœç”¨æˆ·å›è½¦ï¼Œè¿”å›ç©ºä¸²
+        if (!"".equals(name)) {
+            house.setName(name);
+        }
+        System.out.println("ç”µè¯ï¼ˆ" + house.getPhone() + "ï¼‰ï¼š");
+        String phone = Utility.readString(12, "");
+        if (!"".equals(phone)) {
+            house.setPhone(phone);
+        }
+        System.out.println("åœ°å€ï¼ˆ" + house.getAddress() + "ï¼‰ï¼š");
+        String address = Utility.readString(10, "");
+        if (!"".equals(address)) {
+            house.setAddress(address);
+        }
+        System.out.println("æœˆç§Ÿï¼ˆ" + house.getRent() + "ï¼‰ï¼š");
+        int rent = Utility.readInt(-1);
+        if (rent != -1) {
+            house.setRent(rent);
+        }
+        System.out.println("çŠ¶æ€ï¼ˆ" + house.getName() + "ï¼‰ï¼š");
+        String state = Utility.readString(10, "");
+        if (!"".equals(state)) {
+            house.setState(state);
+        }
+
+    }
+
+    public void exit() {
+        char c = Utility.readConfirmSelection();
+        if (c == 'Y') {
+            loop = false;
         }
     }
 }
