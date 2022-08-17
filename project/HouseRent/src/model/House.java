@@ -1,17 +1,17 @@
 package model;
 
 /**
- * HouseµÄ¶ÔÏó±íÊ¾Ò»¸ö·¿ÎİĞÅÏ¢
+ * Houseçš„å¯¹è±¡è¡¨ç¤ºä¸€ä¸ªæˆ¿å±‹ä¿¡æ¯
  */
 public class House {
-    // ±àºÅ£¬·¿Ö÷£¬µç»°£¬µØÖ·£¬ÔÂ×â£¬×´Ì¬£¨Î´³ö×â/ÒÑ³ö×â£©
+    // ç¼–å·ï¼Œæˆ¿ä¸»ï¼Œç”µè¯ï¼Œåœ°å€ï¼Œæœˆç§Ÿï¼ŒçŠ¶æ€ï¼ˆæœªå‡ºç§Ÿ/å·²å‡ºç§Ÿï¼‰
     private int id;
     private String name;
     private String phone;
     private String address;
     private int rent;
     private String state;
-    // ¹¹ÔìÆ÷ºÍsetter, getter
+    // æ„é€ å™¨å’Œsetter, getter
 
     public House(int id, String name, String phone,
                  String address, int rent, String state) {
@@ -71,14 +71,14 @@ public class House {
         this.state = state;
     }
 
-    // ÎªÁË·½±ãÊä³ö¶ÔÏóĞÅÏ¢£¬ÊµÏÖtoString·½·¨
+    // ä¸ºäº†æ–¹ä¾¿è¾“å‡ºå¯¹è±¡ä¿¡æ¯ï¼Œå®ç°toStringæ–¹æ³•
     @Override
     public String toString() {
         return id +
-                "\t" + name +
-                "\t" + phone +
-                "\t" + address +
-                "\t" + rent +
-                "\t" + state;
+                "\t\t" + name +
+                "\t\t" + phone +
+                "\t\t" + address +
+                "\t\t" + rent +
+                "\t\t" + state;
     }
 }

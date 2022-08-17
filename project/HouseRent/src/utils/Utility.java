@@ -6,74 +6,74 @@ import java.util.Scanner;
  *
  */
 public class Utility {
-    //¾²Ì¬ÊôĞÔ
+    //é™æ€å±æ€§
     private static final Scanner scanner = new Scanner(System.in);
 
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÒ»¸ö²Ëµ¥Ñ¡Ïî£¬Öµ£º1¡ª¡ª5µÄ·¶Î§
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„ä¸€ä¸ªèœå•é€‰é¡¹ï¼Œå€¼ï¼š1â€”â€”5çš„èŒƒå›´
      *
-     * @return 1¡ª¡ª5
+     * @return 1â€”â€”5
      */
     public static char readMenuSelection() {
         char c;
         for (; ; ) {
-            String str = readKeyBoard(1, false);//°üº¬Ò»¸ö×Ö·ûµÄ×Ö·û´®
-            c = str.charAt(0);//½«×Ö·û´®×ª»»³É×Ö·ûcharÀàĞÍ
+            String str = readKeyBoard(1, false);//åŒ…å«ä¸€ä¸ªå­—ç¬¦çš„å­—ç¬¦ä¸²
+            c = str.charAt(0);//å°†å­—ç¬¦ä¸²è½¬æ¢æˆå­—ç¬¦charç±»å‹
             if (c != '1' && c != '2' &&
                     c != '3' && c != '4' && c != '5') {
-                System.out.print("Ñ¡Ôñ´íÎó£¬ÇëÖØĞÂÊäÈë£º");
+                System.out.print("é€‰æ‹©é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
             } else break;
         }
         return c;
     }
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÒ»¸ö×Ö·û
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„ä¸€ä¸ªå­—ç¬¦
      *
-     * @return Ò»¸ö×Ö·û
+     * @return ä¸€ä¸ªå­—ç¬¦
      */
     public static char readChar() {
-        String str = readKeyBoard(1, false);//¾ÍÊÇÒ»¸ö×Ö·û
+        String str = readKeyBoard(1, false);//å°±æ˜¯ä¸€ä¸ªå­—ç¬¦
         return str.charAt(0);
     }
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÒ»¸ö×Ö·û£¬Èç¹ûÖ±½Ó°´»Ø³µ£¬Ôò·µ»ØÖ¸¶¨µÄÄ¬ÈÏÖµ£»·ñÔò·µ»ØÊäÈëµÄÄÇ¸ö×Ö·û
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„ä¸€ä¸ªå­—ç¬¦ï¼Œå¦‚æœç›´æ¥æŒ‰å›è½¦ï¼Œåˆ™è¿”å›æŒ‡å®šçš„é»˜è®¤å€¼ï¼›å¦åˆ™è¿”å›è¾“å…¥çš„é‚£ä¸ªå­—ç¬¦
      *
-     * @param defaultValue Ö¸¶¨µÄÄ¬ÈÏÖµ
-     * @return Ä¬ÈÏÖµ»òÊäÈëµÄ×Ö·û
+     * @param defaultValue æŒ‡å®šçš„é»˜è®¤å€¼
+     * @return é»˜è®¤å€¼æˆ–è¾“å…¥çš„å­—ç¬¦
      */
 
     public static char readChar(char defaultValue) {
-        String str = readKeyBoard(1, true);//ÒªÃ´ÊÇ¿Õ×Ö·û´®£¬ÒªÃ´ÊÇÒ»¸ö×Ö·û
+        String str = readKeyBoard(1, true);//è¦ä¹ˆæ˜¯ç©ºå­—ç¬¦ä¸²ï¼Œè¦ä¹ˆæ˜¯ä¸€ä¸ªå­—ç¬¦
         return (str.length() == 0) ? defaultValue : str.charAt(0);
     }
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÕûĞÍ£¬³¤¶ÈĞ¡ÓÚ2Î»
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„æ•´å‹ï¼Œé•¿åº¦å°äº2ä½
      *
-     * @return ÕûÊı
+     * @return æ•´æ•°
      */
     public static int readInt() {
         int n;
         for (; ; ) {
-            String str = readKeyBoard(10, false);//Ò»¸öÕûÊı£¬³¤¶È<=10Î»
+            String str = readKeyBoard(10, false);//ä¸€ä¸ªæ•´æ•°ï¼Œé•¿åº¦<=10ä½
             try {
-                n = Integer.parseInt(str);//½«×Ö·û´®×ª»»³ÉÕûÊı
+                n = Integer.parseInt(str);//å°†å­—ç¬¦ä¸²è½¬æ¢æˆæ•´æ•°
                 break;
             } catch (NumberFormatException e) {
-                System.out.print("Êı×ÖÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£º");
+                System.out.print("æ•°å­—è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
             }
         }
         return n;
     }
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄ ÕûÊı»òÄ¬ÈÏÖµ£¬Èç¹ûÖ±½Ó»Ø³µ£¬Ôò·µ»ØÄ¬ÈÏÖµ£¬·ñÔò·µ»ØÊäÈëµÄÕûÊı
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„ æ•´æ•°æˆ–é»˜è®¤å€¼ï¼Œå¦‚æœç›´æ¥å›è½¦ï¼Œåˆ™è¿”å›é»˜è®¤å€¼ï¼Œå¦åˆ™è¿”å›è¾“å…¥çš„æ•´æ•°
      *
-     * @param defaultValue Ö¸¶¨µÄÄ¬ÈÏÖµ
-     * @return ÕûÊı»òÄ¬ÈÏÖµ
+     * @param defaultValue æŒ‡å®šçš„é»˜è®¤å€¼
+     * @return æ•´æ•°æˆ–é»˜è®¤å€¼
      */
     public static int readInt(int defaultValue) {
         int n;
@@ -83,22 +83,22 @@ public class Utility {
                 return defaultValue;
             }
 
-            //Òì³£´¦Àí...
+            //å¼‚å¸¸å¤„ç†...
             try {
                 n = Integer.parseInt(str);
                 break;
             } catch (NumberFormatException e) {
-                System.out.print("Êı×ÖÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë£º");
+                System.out.print("æ•°å­—è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
             }
         }
         return n;
     }
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÖ¸¶¨³¤¶ÈµÄ×Ö·û´®
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„æŒ‡å®šé•¿åº¦çš„å­—ç¬¦ä¸²
      *
-     * @param limit ÏŞÖÆµÄ³¤¶È
-     * @return Ö¸¶¨³¤¶ÈµÄ×Ö·û´®
+     * @param limit é™åˆ¶çš„é•¿åº¦
+     * @return æŒ‡å®šé•¿åº¦çš„å­—ç¬¦ä¸²
      */
 
     public static String readString(int limit) {
@@ -106,11 +106,11 @@ public class Utility {
     }
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÖ¸¶¨³¤¶ÈµÄ×Ö·û´®»òÄ¬ÈÏÖµ£¬Èç¹ûÖ±½Ó»Ø³µ£¬·µ»ØÄ¬ÈÏÖµ£¬·ñÔò·µ»Ø×Ö·û´®
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„æŒ‡å®šé•¿åº¦çš„å­—ç¬¦ä¸²æˆ–é»˜è®¤å€¼ï¼Œå¦‚æœç›´æ¥å›è½¦ï¼Œè¿”å›é»˜è®¤å€¼ï¼Œå¦åˆ™è¿”å›å­—ç¬¦ä¸²
      *
-     * @param limit        ÏŞÖÆµÄ³¤¶È
-     * @param defaultValue Ö¸¶¨µÄÄ¬ÈÏÖµ
-     * @return Ö¸¶¨³¤¶ÈµÄ×Ö·û´®
+     * @param limit        é™åˆ¶çš„é•¿åº¦
+     * @param defaultValue æŒ‡å®šçš„é»˜è®¤å€¼
+     * @return æŒ‡å®šé•¿åº¦çš„å­—ç¬¦ä¸²
      */
 
     public static String readString(int limit, String defaultValue) {
@@ -120,57 +120,57 @@ public class Utility {
 
 
     /**
-     * ¹¦ÄÜ£º¶ÁÈ¡¼üÅÌÊäÈëµÄÈ·ÈÏÑ¡Ïî£¬Y»òN
-     * ½«Ğ¡µÄ¹¦ÄÜ£¬·â×°µ½Ò»¸ö·½·¨ÖĞ.
+     * åŠŸèƒ½ï¼šè¯»å–é”®ç›˜è¾“å…¥çš„ç¡®è®¤é€‰é¡¹ï¼ŒYæˆ–N
+     * å°†å°çš„åŠŸèƒ½ï¼Œå°è£…åˆ°ä¸€ä¸ªæ–¹æ³•ä¸­.
      *
-     * @return Y»òN
+     * @return Yæˆ–N
      */
     public static char readConfirmSelection() {
-        System.out.println("ÇëÊäÈëÄãµÄÑ¡Ôñ(Y/N): ÇëĞ¡ĞÄÑ¡Ôñ");
+        System.out.println("è¯·è¾“å…¥ä½ çš„é€‰æ‹©(Y/N): è¯·å°å¿ƒé€‰æ‹©");
         char c;
-        for (; ; ) {//ÎŞÏŞÑ­»·
-            //ÔÚÕâÀï£¬½«½ÓÊÜµ½×Ö·û£¬×ª³ÉÁË´óĞ´×ÖÄ¸
+        for (; ; ) {//æ— é™å¾ªç¯
+            //åœ¨è¿™é‡Œï¼Œå°†æ¥å—åˆ°å­—ç¬¦ï¼Œè½¬æˆäº†å¤§å†™å­—æ¯
             //y => Y n=>N
             String str = readKeyBoard(1, false).toUpperCase();
             c = str.charAt(0);
             if (c == 'Y' || c == 'N') {
                 break;
             } else {
-                System.out.print("Ñ¡Ôñ´íÎó£¬ÇëÖØĞÂÊäÈë£º");
+                System.out.print("é€‰æ‹©é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
             }
         }
         return c;
     }
 
     /**
-     * ¹¦ÄÜ£º ¶ÁÈ¡Ò»¸ö×Ö·û´®
+     * åŠŸèƒ½ï¼š è¯»å–ä¸€ä¸ªå­—ç¬¦ä¸²
      *
-     * @param limit       ¶ÁÈ¡µÄ³¤¶È
-     * @param blankReturn Èç¹ûÎªtrue ,±íÊ¾ ¿ÉÒÔ¶Á¿Õ×Ö·û´®¡£
-     *                    Èç¹ûÎªfalse±íÊ¾ ²»ÄÜ¶Á¿Õ×Ö·û´®¡£
+     * @param limit       è¯»å–çš„é•¿åº¦
+     * @param blankReturn å¦‚æœä¸ºtrue ,è¡¨ç¤º å¯ä»¥è¯»ç©ºå­—ç¬¦ä¸²ã€‚
+     *                    å¦‚æœä¸ºfalseè¡¨ç¤º ä¸èƒ½è¯»ç©ºå­—ç¬¦ä¸²ã€‚
      *                    <p>
-     *                    Èç¹ûÊäÈëÎª¿Õ£¬»òÕßÊäÈë´óÓÚlimitµÄ³¤¶È£¬¾Í»áÌáÊ¾ÖØĞÂÊäÈë¡£
+     *                    å¦‚æœè¾“å…¥ä¸ºç©ºï¼Œæˆ–è€…è¾“å…¥å¤§äºlimitçš„é•¿åº¦ï¼Œå°±ä¼šæç¤ºé‡æ–°è¾“å…¥ã€‚
      * @return
      */
     private static String readKeyBoard(int limit, boolean blankReturn) {
 
-        //¶¨ÒåÁË×Ö·û´®
+        //å®šä¹‰äº†å­—ç¬¦ä¸²
         String line = "";
 
-        //scanner.hasNextLine() ÅĞ¶ÏÓĞÃ»ÓĞÏÂÒ»ĞĞ
+        //scanner.hasNextLine() åˆ¤æ–­æœ‰æ²¡æœ‰ä¸‹ä¸€è¡Œ
         while (scanner.hasNextLine()) {
-            line = scanner.nextLine();//¶ÁÈ¡ÕâÒ»ĞĞ
+            line = scanner.nextLine();//è¯»å–è¿™ä¸€è¡Œ
 
-            //Èç¹ûline.length=0, ¼´ÓÃ»§Ã»ÓĞÊäÈëÈÎºÎÄÚÈİ£¬Ö±½Ó»Ø³µ
+            //å¦‚æœline.length=0, å³ç”¨æˆ·æ²¡æœ‰è¾“å…¥ä»»ä½•å†…å®¹ï¼Œç›´æ¥å›è½¦
             if (line.length() == 0) {
-                if (blankReturn) return line;//Èç¹ûblankReturn=true,¿ÉÒÔ·µ»Ø¿Õ´®
-                else continue; //Èç¹ûblankReturn=false,²»½ÓÊÜ¿Õ´®£¬±ØĞëÊäÈëÄÚÈİ
+                if (blankReturn) return line;//å¦‚æœblankReturn=true,å¯ä»¥è¿”å›ç©ºä¸²
+                else continue; //å¦‚æœblankReturn=false,ä¸æ¥å—ç©ºä¸²ï¼Œå¿…é¡»è¾“å…¥å†…å®¹
             }
 
-            //Èç¹ûÓÃ»§ÊäÈëµÄÄÚÈİ´óÓÚÁË limit£¬¾ÍÌáÊ¾ÖØĞ´ÊäÈë
-            //Èç¹ûÓÃ»§ÈçµÄÄÚÈİ >0 <= limit ,ÎÒ¾Í½ÓÊÜ
+            //å¦‚æœç”¨æˆ·è¾“å…¥çš„å†…å®¹å¤§äºäº† limitï¼Œå°±æç¤ºé‡å†™è¾“å…¥
+            //å¦‚æœç”¨æˆ·å¦‚çš„å†…å®¹ >0 <= limit ,æˆ‘å°±æ¥å—
             if (line.length() > limit) {
-                System.out.print("ÊäÈë³¤¶È£¨²»ÄÜ´óÓÚ" + limit + "£©´íÎó£¬ÇëÖØĞÂÊäÈë£º");
+                System.out.print("è¾“å…¥é•¿åº¦ï¼ˆä¸èƒ½å¤§äº" + limit + "ï¼‰é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
                 continue;
             }
             break;
